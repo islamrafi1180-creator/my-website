@@ -3,58 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rafi | Projects</title>
+<title>Projects | Rafi</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
-<nav id="sidebar">
-  <div class="logo">
-    <svg width="40" height="40" viewBox="0 0 64 64">
-      <circle cx="32" cy="12" r="8" fill="#FFD700"/>
-      <line x1="32" y1="20" x2="32" y2="44" stroke="#FFD700" stroke-width="4"/>
-      <line x1="32" y1="24" x2="20" y2="36" stroke="#FFD700" stroke-width="4"/>
-      <line x1="32" y1="24" x2="44" y2="36" stroke="#FFD700" stroke-width="4"/>
-      <line x1="32" y1="44" x2="24" y2="56" stroke="#FFD700" stroke-width="4"/>
-      <line x1="32" y1="44" x2="40" y2="56" stroke="#FFD700" stroke-width="4"/>
-      <text x="32" y="28" font-size="10" text-anchor="middle" fill="#000">R</text>
-    </svg>
-    <span>Rafi</span>
-  </div>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="achievements.html">Achievements</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-  <button id="mode-toggle">Toggle Light/Dark</button>
+
+<nav class="navbar">
+    <div class="logo">
+        <div class="stickman">
+            <span class="head"></span>
+            <span class="body">R</span>
+        </div>
+        Rafi
+    </div>
+    <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button id="toggle-theme">🌙</button>
+    <button class="hamburger">&#9776;</button>
 </nav>
-<main>
-  <section>
-    <h1>Projects</h1>
-    <div class="project">
-      <h2>Ridget Zoo Adventures Website</h2>
-      <img src="images/zoo-placeholder.png" alt="Zoo Adventures screenshot">
-      <p>Safari-style wildlife experience website with booking and hotel features.</p>
-    </div>
-    <div class="project">
-      <h2>Egg Catching Game</h2>
-      <img src="images/egggame-placeholder.png" alt="Egg Catching Game screenshot">
-      <p>Interactive Python game with increasing difficulty levels and realistic physics.</p>
-    </div>
-    <div class="project">
-      <h2>Climbing Game</h2>
-      <img src="images/climbing-placeholder.png" alt="Climbing Game screenshot">
-      <p>Progressive 10-level climbing game with realistic movement and challenges.</p>
-    </div>
-    <div class="project">
-      <h2>VR Project with Southern Housing</h2>
-      <img src="images/vr-placeholder.png" alt="VR Project screenshot">
-      <p>Immersive VR experiences for residents using headsets and interactive content.</p>
-    </div>
-  </section>
+
+<main class="grid">
+    <section class="card">
+        <h2>Ridget Zoo Adventures</h2>
+        <p>A safari-style VR experience, complete with booking and hotel integration.</p>
+    </section>
+    <section class="card">
+        <h2>Egg Catching Game</h2>
+        <p>Interactive Python game with multiple levels, speed increase, and realistic physics.</p>
+    </section>
+    <section class="card">
+        <h2>VR Work Placement Project</h2>
+        <p>Designed VR experiences for older people at Southern Housing, including content creation and user testing.</p>
+    </section>
 </main>
+
 <script src="script.js"></script>
 </body>
 </html>
