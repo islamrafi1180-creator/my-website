@@ -1,12 +1,16 @@
-const toggleBtn = document.getElementById('mode-toggle');
-const body = document.body;
-
+// Dark / Light Mode Toggle
+const toggleBtn = document.getElementById('toggle-theme');
 toggleBtn.addEventListener('click', () => {
-  if(body.classList.contains('dark')){
-    body.classList.remove('dark');
-    body.classList.add('light');
-  } else {
-    body.classList.remove('light');
-    body.classList.add('dark');
-  }
+    document.body.classList.toggle('dark');
+    document.body.classList.toggle('light');
+    toggleBtn.textContent = document.body.classList.contains('dark') ? '🌙' : '☀️';
 });
+
+// Hamburger Menu
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('show');
+});
+
