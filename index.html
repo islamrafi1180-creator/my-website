@@ -1,53 +1,348 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rafi | Digital Creator</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafi | Digital Creator</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Set up Tailwind configuration for the theme
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode based on the 'dark' class on the HTML tag
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-accent': '#2dd4bf', // Teal-400 for highlights
+                        'background-dark': '#0f172a', // Slate-900
+                        'card-dark': '#1e293b', // Slate-800
+                        'text-light': '#f8fafc', // Slate-50
+
+                        'background-light': '#f1f5f9', // Slate-100
+                        'card-light': '#ffffff', // White
+                        'text-dark': '#0f172a', // Slate-900
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Inter Font Import -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Smooth scrolling for internal links */
+        html { scroll-behavior: smooth; }
+
+        /* Custom Stickman 'R' Logo Styling */
+        .stickman-logo {
+            display: inline-flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary-accent);
+        }
+
+        .stickman {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            margin-right: 0.5rem;
+            border-radius: 50%;
+            border: 2px solid var(--color-primary-accent);
+            color: var(--color-primary-accent);
+            line-height: 1;
+            overflow: visible;
+        }
+
+        .stickman .head {
+            position: absolute;
+            top: -6px; /* Adjust based on 'head' size */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 8px;
+            background-color: var(--color-primary-accent);
+            border-radius: 50%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Set CSS variables based on theme for custom stickman/toggle */
+        .dark {
+            --color-primary-accent: #2dd4bf;
+        }
+        .light {
+            --color-primary-accent: #0f766e; /* Darker teal for contrast */
+        }
+    </style>
 </head>
-<body class="dark">
+<body class="bg-background-dark text-text-light transition-colors duration-500">
 
-<nav class="navbar">
-    <div class="logo">
-        <div class="stickman">
-            <span class="head"></span>
-            <span class="body">R</span>
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-background-dark/90 dark:bg-background-dark/90 backdrop-blur-sm shadow-xl transition-colors duration-500">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#hero" class="stickman-logo">
+                <div class="stickman">
+                    <span class="head"></span>
+                    R
+                </div>
+                Rafi
+            </a>
+            
+            <!-- Desktop Links -->
+            <div class="space-x-6 hidden lg:flex">
+                <a href="#about" class="text-gray-300 hover:text-primary-accent transition duration-300 font-medium">About</a>
+                <a href="#education" class="text-gray-300 hover:text-primary-accent transition duration-300 font-medium">Education</a>
+                <a href="#achievements" class="text-gray-300 hover:text-primary-accent transition duration-300 font-medium">Achievements</a>
+                <a href="#projects" class="text-gray-300 hover:text-primary-accent transition duration-300 font-medium">Projects</a>
+                <a href="#contact" class="text-gray-300 hover:text-primary-accent transition duration-300 font-medium">Contact</a>
+            </div>
+
+            <!-- Theme Toggle & Hamburger -->
+            <div class="flex items-center space-x-4">
+                <button id="toggle-theme" class="text-xl p-2 rounded-full bg-card-dark dark:bg-card-dark text-primary-accent shadow-md transition-all duration-300 hover:scale-110">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <button id="menu-button" class="lg:hidden text-primary-accent p-2 rounded-lg hover:bg-card-dark transition duration-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-background-dark dark:bg-background-dark border-t border-gray-700 py-2 transition-colors duration-500">
+            <a href="#about" class="block px-4 py-2 text-gray-300 hover:bg-card-dark transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">About</a>
+            <a href="#education" class="block px-4 py-2 text-gray-300 hover:bg-card-dark transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Education</a>
+            <a href="#achievements" class="block px-4 py-2 text-gray-300 hover:bg-card-dark transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Achievements</a>
+            <a href="#projects" class="block px-4 py-2 text-gray-300 hover:bg-card-dark transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Projects</a>
+            <a href="#contact" class="block px-4 py-2 text-gray-300 hover:bg-card-dark transition duration-300" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
         </div>
-        Rafi
-    </div>
-    <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="achievements.html">Achievements</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-    </ul>
-    <button id="toggle-theme">🌙</button>
-    <button class="hamburger">&#9776;</button>
-</nav>
+    </header>
 
-<main>
-    <section class="card">
-        <h2>Welcome to my Portfolio</h2>
-        <p>Hi, I’m Rafi. I’m passionate about VR, web development, and digital design. Here you can explore my projects, achievements, and learn more about me.</p>
-    </section>
+    <main class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-    <section class="card">
-        <h2>Featured Project</h2>
-        <p>Ridget Zoo Adventures - A VR safari-style experience I developed as part of my T Level project.</p>
-    </section>
+        <!-- 1. Hero / Welcome Section -->
+        <section id="hero" class="min-h-[80vh] flex items-center justify-center text-center pt-20 pb-16">
+            <div class="max-w-4xl">
+                <p class="text-xl sm:text-2xl text-primary-accent mb-4 font-medium animate-pulse">Welcome to my Portfolio</p>
+                <h1 class="text-5xl sm:text-7xl lg:text-8xl font-extrabold tracking-tighter mb-6 leading-tight text-text-light dark:text-text-light">
+                    Hi, I’m <span class="text-primary-accent">Rafi</span>,
+                </h1>
+                <h2 class="text-2xl sm:text-3xl text-gray-400 font-light max-w-3xl mx-auto mb-10">
+                    A passionate **Digital Creator** focusing on **VR, Web Development, and Immersive Design**.
+                </h2>
+                <a href="#projects" class="inline-block bg-primary-accent text-background-dark font-semibold py-3 px-8 rounded-full transition duration-300 shadow-xl shadow-primary-accent/30 transform hover:scale-105">
+                    Explore My Work
+                </a>
+            </div>
+        </section>
 
-    <section class="card">
-        <h2>Achievements</h2>
-        <ul>
-            <li>Most Improved Student - T Level 2024</li>
-            <li>Built multiple web projects including this portfolio</li>
-        </ul>
-    </section>
-</main>
+        <!-- --- -->
+        
+        <!-- 2. About Section -->
+        <section id="about" class="py-20 border-t border-gray-800 dark:border-gray-800 transition-colors duration-500">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-accent">About Me</h2>
 
-<script src="script.js"></script>
+            <div class="bg-card-dark dark:bg-card-dark p-8 rounded-xl shadow-2xl transition-colors duration-500">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                    Here you can explore my projects, achievements, and learn more about my journey. My passion lies at the intersection of creativity and technology, particularly in developing engaging **Virtual Reality experiences** and building robust, user-friendly web applications. I believe in continuous learning and applying cutting-edge tools to solve real-world problems. I'm currently focused on expanding my skillset in **full-stack development** while maintaining a strong interest in the possibilities of the **Metaverse**.
+                </p>
+                <!-- Add a photo placeholder here when you are ready -->
+                <div class="mt-8 text-center">
+                    <div class="w-32 h-32 bg-gray-700 mx-auto rounded-full flex items-center justify-center text-gray-400 text-sm">
+                        [Your Photo Here]
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 3. Education Section -->
+        <section id="education" class="py-20 border-t border-gray-800 dark:border-gray-800 transition-colors duration-500">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-accent">Education & Training</h2>
+
+            <div class="space-y-8 max-w-3xl mx-auto">
+                <!-- Education Item 1: T Level -->
+                <div class="bg-card-dark dark:bg-card-dark p-6 rounded-xl shadow-lg hover:shadow-primary-accent/20 transition duration-300">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-semibold text-text-light">T Level in Digital Production, Design and Development</h3>
+                        <span class="text-sm text-gray-400">2022 - 2024 (Expected)</span>
+                    </div>
+                    <p class="text-gray-400 mb-3">[Name of College/Institution]</p>
+                    <ul class="list-disc list-inside text-gray-300 ml-4 space-y-1">
+                        <li>**Core Modules:** Focused on software development methodologies, user experience (UX), and network infrastructure.</li>
+                        <li>**Industry Placement:** Completed a 45-day placement at [Company Name], focusing on agile web development sprints.</li>
+                        <li>**Key Skills Gained:** Proficiency in HTML, CSS, JavaScript, and an introduction to **VR development tools**.</li>
+                    </ul>
+                </div>
+                <!-- Education Item 2: Pre-T Level/High School -->
+                 <div class="bg-card-dark dark:bg-card-dark p-6 rounded-xl shadow-lg hover:shadow-primary-accent/20 transition duration-300">
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="text-xl font-semibold text-text-light">Secondary Education (GCSEs)</h3>
+                        <span class="text-sm text-gray-400">2017 - 2022</span>
+                    </div>
+                    <p class="text-gray-400 mb-3">[Name of School]</p>
+                    <ul class="list-disc list-inside text-gray-300 ml-4 space-y-1">
+                        <li>Achieved strong grades in Computing, Mathematics, and Art, building a foundation for digital creativity.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 4. Achievements Section -->
+        <section id="achievements" class="py-20 border-t border-gray-800 dark:border-gray-800 transition-colors duration-500">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-accent">Key Achievements</h2>
+
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <!-- Achievement Card 1 (T Level Award) -->
+                <div class="bg-card-dark dark:bg-card-dark p-6 rounded-xl shadow-lg border-l-4 border-primary-accent">
+                    <p class="text-4xl mb-3 text-primary-accent">🏆</p>
+                    <h3 class="text-xl font-semibold text-text-light mb-2">Most Improved Student - T Level 2024</h3>
+                    <p class="text-gray-400">Awarded by [Institution Name] for demonstrating exceptional growth in technical proficiency and project management skills throughout the academic year.</p>
+                </div>
+
+                <!-- Achievement Card 2 (Project Based) -->
+                <div class="bg-card-dark dark:bg-card-dark p-6 rounded-xl shadow-lg border-l-4 border-teal-500">
+                    <p class="text-4xl mb-3 text-teal-500">💻</p>
+                    <h3 class="text-xl font-semibold text-text-light mb-2">Successful Portfolio Launch</h3>
+                    <p class="text-gray-400">Designed, coded, and deployed this portfolio website from scratch. This project demonstrates proficiency in responsive design, Tailwind CSS, and DOM manipulation (theme toggle).</p>
+                </div>
+                
+                <!-- Achievement Card 3 (VR Expertise) -->
+                <div class="bg-card-dark dark:bg-card-dark p-6 rounded-xl shadow-lg border-l-4 border-indigo-500">
+                    <p class="text-4xl mb-3 text-indigo-500">🌐</p>
+                    <h3 class="text-xl font-semibold text-text-light mb-2">VR Experience Development</h3>
+                    <p class="text-gray-400">Successfully developed a fully functional VR safari-style experience (Ridget Zoo Adventures) using [Specify Engine, e.g., Unity/Unreal], showcasing skills in 3D environment design and interaction scripting.</p>
+                </div>
+                 <!-- Achievement Card 4 (Skill-based) -->
+                <div class="bg-card-dark dark:bg-card-dark p-6 rounded-xl shadow-lg border-l-4 border-fuchsia-500">
+                    <p class="text-4xl mb-3 text-fuchsia-500">💡</p>
+                    <h3 class="text-xl font-semibold text-text-light mb-2">Effective Client Communication</h3>
+                    <p class="text-gray-400">Successfully managed and delivered project requirements for a small local business during my placement, ensuring clear communication and technical delivery met expectations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+
+        <!-- 5. Projects Section (Featured Project) -->
+        <section id="projects" class="py-20 border-t border-gray-800 dark:border-gray-800 transition-colors duration-500">
+            <h2 class="text-4xl font-bold text-center mb-12 text-primary-accent">Featured Projects</h2>
+
+            <div class="max-w-2xl mx-auto bg-card-dark dark:bg-card-dark p-8 rounded-xl shadow-2xl border border-gray-700 transition duration-300 hover:shadow-primary-accent/40">
+                <h3 class="text-3xl font-bold text-primary-accent mb-3">Ridget Zoo Adventures (VR)</h3>
+                <p class="text-lg text-gray-300 mb-4">
+                    **Project Type:** T Level Final Project / Virtual Reality Experience
+                </p>
+                <p class="text-gray-400 leading-relaxed mb-6">
+                    A captivating VR safari-style experience designed to be immersive and educational. I was responsible for all stages, including 3D asset integration, spatial audio implementation, and C# scripting for user interactions and environment logic. This project demonstrates my ability to merge technical coding skills with creative design principles in a challenging 3D environment.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">Unity/Unreal</span>
+                    <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">VR Development</span>
+                    <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">C#</span>
+                    <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-full text-sm">3D Design</span>
+                </div>
+                <div class="mt-6">
+                    <a href="[LINK TO PROJECT DEMO/VIDEO]" class="text-primary-accent hover:text-teal-300 font-semibold inline-flex items-center">
+                        View Demo / Case Study
+                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- -->
+        
+        <!-- 6. Contact Section -->
+        <section id="contact" class="py-20 border-t border-gray-800 dark:border-gray-800 transition-colors duration-500">
+            <h2 class="text-4xl font-bold text-center mb-8 text-primary-accent">Let's Connect</h2>
+            <p class="text-center text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Ready to discuss VR, web dev, or just want to say hello? Drop me a message below.
+            </p>
+
+            <div class="max-w-xl mx-auto bg-card-dark dark:bg-card-dark p-8 rounded-xl shadow-2xl transition-colors duration-500">
+                <form action="[YOUR FORM SUBMISSION URL]" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary-accent focus:ring-primary-accent focus:ring-1 text-white placeholder-gray-500 transition duration-150">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary-accent focus:ring-primary-accent focus:ring-1 text-white placeholder-gray-500 transition duration-150">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="4" required
+                                  class="w-full px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 focus:border-primary-accent focus:ring-primary-accent focus:ring-1 text-white placeholder-gray-500 transition duration-150"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-primary-accent hover:bg-teal-500 text-background-dark font-bold py-3 rounded-lg transition duration-300 transform hover:scale-[1.01] shadow-lg">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 border-t border-gray-800 dark:border-gray-800 py-10 transition-colors duration-500">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center text-gray-500 space-y-4">
+            <p>&copy; 2024 Rafi | Digital Creator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Mobile Menu and Theme Toggle -->
+    <script>
+        // Placeholder for Canvas Environment variables
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+
+        // 1. Mobile Menu Toggle
+        document.getElementById('menu-button').addEventListener('click', () => {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Theme Toggle Logic
+        const htmlElement = document.documentElement;
+        const toggleButton = document.getElementById('toggle-theme');
+        const themeIcon = document.getElementById('theme-icon');
+
+        // Initial state check (or default to dark mode, as per your original file)
+        if (htmlElement.classList.contains('dark')) {
+            themeIcon.textContent = '☀️';
+        } else {
+            themeIcon.textContent = '🌙';
+        }
+
+        toggleButton.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                // Switch to light mode
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                themeIcon.textContent = '🌙';
+                // Update body classes for light mode
+                document.body.classList.remove('bg-background-dark', 'text-text-light');
+                document.body.classList.add('bg-background-light', 'text-text-dark');
+            } else {
+                // Switch to dark mode
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+                themeIcon.textContent = '☀️';
+                // Update body classes for dark mode
+                document.body.classList.remove('bg-background-light', 'text-text-dark');
+                document.body.classList.add('bg-background-dark', 'text-text-light');
+            }
+        });
+    </script>
 </body>
 </html>
